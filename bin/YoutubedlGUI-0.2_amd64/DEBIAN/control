@@ -1,5 +1,5 @@
 Package: youtube-dlgui
-Version: 0.1
+Version: 0.2
 Architecture: amd64
 Essential: no
 Priority: optional
