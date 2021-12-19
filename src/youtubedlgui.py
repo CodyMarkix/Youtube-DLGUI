@@ -13,19 +13,23 @@ window.resizable(0,0)
 
 # Functions
 def convert():
-    SAVE_PATH = '/'.join(os.getcwd().split('/')[:3]) + '/Desktop'
+    try:
+        SAVE_PATH = '/'.join(os.getcwd().split('/')[:3]) + '/Desktop'
 
-    ydl_opts = {
-        'outtmpl':SAVE_PATH + '/%(title)s.%(ext)s',
-    }
+        ydl_opts = {
+            'outtmpl':SAVE_PATH + '/%(title)s.%(ext)s',
+        }
 
-    with YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url.get()])
-    convertiondone()
+        with YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url.get()])
+        convertiondone()
+    except Exception:
+        errordialogue()
 
 def convertiondone():
     convertsuccess = Tk()
     convertsuccess.title("Downloaded!")
+    convertsuccess.geometry("180x50")
     convertsuccess.resizable(0,0)
     converttext = Label(convertsuccess, text="Video downloaded!")
     convertok = Button(convertsuccess, text="OK", command=convertsuccess.destroy)
@@ -35,6 +39,7 @@ def convertiondone():
 def errordialogue():
     errorwindow = Tk()
     errorwindow.title("Error!")
+    errorwindow.geometry("180x50")
     errorwindow.resizable(0,0)
     errortext = Label(errorwindow, text="There was an error!")
     errorok = Button(errorwindow, text="OK", command=errorwindow.destroy)
