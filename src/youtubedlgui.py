@@ -14,17 +14,35 @@ window.resizable(0,0)
 # Function for downloading the video
 def convert():
     try:
-        SAVE_PATH = '/'.join(os.getcwd().split('/')[:3]) + '/Desktop'
+        SAVE_PATH = '/'.join(os.getcwd().split('/')[:3]) + '/Desktop' # Path to video folder
 
-        ydl_opts = {
-            'outtmpl':SAVE_PATH + '/%(title)s.%(ext)s',
-        }
-
+        # Options for video if MP4 is selected
+        if clicked.get() == "MP4":
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'outtmpl':SAVE_PATH + '/%(title)s.%(ext)s',
+            }
+        # Same but if MP3 is selected
+        elif clicked.get() == "MP3":
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }],
+                'outtmpl':SAVE_PATH + '/%(title)s.%(ext)s'
+            }
+        # Downloading the video
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url.get()])
         convertiondone()
+
+    # (Unproper) Error handling
     except Exception:
-        errordialogue()
+        exceptionerrordialogue()
+    except SyntaxError:
+        syntaxerrordialogue()
 
 # Dialogue box that shows when a conversion is successful
 def convertiondone():
@@ -37,8 +55,8 @@ def convertiondone():
     converttext.pack()
     convertok.pack()
 
-# Error dialogue that is spitted out when an error occurs, I'll try to add error handling later on
-def errordialogue():
+# Error dialogues (I'll do proper error handling one day)
+def exceptionerrordialogue():
     errorwindow = Tk()
     errorwindow.title("Error!")
     errorwindow.geometry("180x50")
@@ -48,9 +66,17 @@ def errordialogue():
     errortext.pack()
     errorok.pack()
 
+def syntaxerrordialogue():
+    syntaxerrorwindow = Tk()
+    syntaxerrorwindow.title("Error!")
+    syntaxerrorwindow.geometry("180x50")
+    syntaxerrorwindow.resizable(0,0)
+    syntaxtext = Label(syntaxerrorwindow, text="There was an error!\nSyntaxException")
+    syntaxok = Button(syntaxerrorwindow, text="OK", command=syntaxerrorwindow.destroy)
+    syntaxtext.pack()
+    syntaxok.pack()
 
 # Widgets, idk
-eobj = Label(window, text="   ")
 logo = Label(window, text="Youtube DLGUI")
 url = Entry(window)
 
