@@ -35,7 +35,7 @@ cd Youtube-DLGUI
 cd into the folder where the binary is supposed to be built
 
 ```
-cd bin/YoutubedlGUI-0.2_amd64/usr/bin
+cd bin/YoutubedlGUI-0.3_amd64/usr/bin
 ```
 
 and build the program.
@@ -53,5 +53,5 @@ But, a binary for Debian is included. Click on the releases tab and find the lat
 Alternatively, you can download the deb and do.
 
 ```
-sudo dpkg -i YoutubedlGUI-0.2_amd64.deb
+sudo dpkg -i YoutubedlGUI-0.3_amd64.deb
 ```
