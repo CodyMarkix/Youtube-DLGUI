@@ -46,7 +46,7 @@ pyinstaller --onefile ../../../../src/youtubedlgui.py
 
 ### Installing the binary:
 
-So far, the Windows binary is not yet included in the repo/releases. You need to build it yourself. Same with Mac OS and Arch/RedHat/Suse based Linux distros.
+So far, the macOS binary is not yet included in the repo/releases. You need to build it yourself. Same with Arch/RedHat/Suse based Linux distros.
 
 But, a binary for Debian is included. Click on the releases tab and find the latest release. Then click on the deb and it should be downloading. Then double click the downloaded deb and click install.
 
