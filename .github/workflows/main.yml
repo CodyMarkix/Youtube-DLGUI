@@ -20,5 +20,5 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          pip install pyinstaller
+          pip3 install pyinstaller
           ls
