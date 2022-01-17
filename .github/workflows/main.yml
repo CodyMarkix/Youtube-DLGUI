@@ -20,5 +20,7 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          pip3 install pyinstaller
-          ls
+          cd bin
+          mkdir macOS
+          cd macOS
+          pyinstaller --onefile ../../src/youtubedlgui.py
